@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Pusher\Pusher;
 
 class HomeController extends Controller
 {
@@ -19,10 +20,20 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         return view('home');
+    }
+
+    public function authenticate(Request $request){
+        $socketId = $request->socker_id;
+        $channelName = $request->channel_name;
+
+        $pusher = new Pusher('App Key', 'App Secret', 'App id', [
+            'cluster' => 'ap2',
+            'ens'
+        ]);
     }
 }
